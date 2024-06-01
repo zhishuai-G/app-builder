@@ -23,7 +23,9 @@ export default function Page() {
   // 公共方法，初始化所有数据
   const initDataSource = async (value: any) => {
     const res = await getPageList(value)
-    setPageList(res)
+    if (res?.code === 200) {
+      setPageList(res.data)
+    }
   }
 
   // 搜索
@@ -38,10 +40,15 @@ export default function Page() {
   }
 
   const handleOk = async () => {
-    await addNewPage({
+    const res = await addNewPage({
       pageId: new Date().getTime(),
-      pageName,
+      pageName
     })
+    if (res?.code === 200) {
+      message.success('页面新增成功')
+    } else {
+      message.error('页面新增失败')
+    }
     initDataSource("")
     setIsModalOpen(false)
   }

@@ -13,3 +13,6 @@ export const deletePage = (pageId: string) => axios.delete(`/api/page-json/${pag
 
 // 更新页面
 export const updatePage = (pageId: string, data: any) => axios.patch(`/api/page-json/${pageId}`, data).then(res => res.data)
+
+// 获取图片列表
+export const getImageList = () => axios.get('/api/upload/images').then(res => res.data)

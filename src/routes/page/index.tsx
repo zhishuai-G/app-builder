@@ -3,6 +3,7 @@ import { Card, Col, Row, Button, Input, message, Modal, Divider, Select, Form, P
 import { DeleteOutlined, DatabaseOutlined, FormOutlined, InsertRowBelowOutlined, UsergroupDeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { addNewPage, getPageList, deletePage, updatePage } from '../../server'
 import './index.css'
+import { useNavigate } from 'react-router-dom';
 
 const { Search } = Input
 
@@ -16,6 +17,7 @@ interface pageJsonProps {
 }
 
 export default function Page() {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)  // 新增页面弹窗
   const [pageName, setPageName] = useState<string>('') // 新增页面名称
   const [editPageName, setEditPageName] = useState<string>('') // 编辑页面名称
@@ -123,6 +125,10 @@ export default function Page() {
     setEditPageName(e?.target?.value)
   }
 
+  const upLoadImage = () => {
+    navigate('/uploadImage')
+  }
+
   useEffect(() => {
     initDataSource({ pageName: "" });
   }, [])
@@ -133,6 +139,8 @@ export default function Page() {
       <div className='pageLeft'>
         <div className='leftHeader'>ZhiLinBuilder</div>
         <div className='leftDiscribe'>轻量级的低代码平台</div>
+        <Divider />
+        <Button onClick={upLoadImage} size='large' type='link'>图片管理</Button>
         <Divider />
       </div>
       {/* 右侧区域 */}

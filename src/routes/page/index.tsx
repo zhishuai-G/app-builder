@@ -129,6 +129,10 @@ export default function Page() {
     navigate('/uploadImage')
   }
 
+  const toDataBase = () => {
+    navigate('/dataBase')
+  }
+
   useEffect(() => {
     initDataSource({ pageName: "" });
   }, [])
@@ -141,6 +145,8 @@ export default function Page() {
         <div className='leftDiscribe'>轻量级的低代码平台</div>
         <Divider />
         <Button onClick={upLoadImage} size='large' type='link'>图片管理</Button>
+        <Divider />
+        <Button onClick={toDataBase} size='large' type='link'>实体管理</Button>
         <Divider />
       </div>
       {/* 右侧区域 */}

@@ -16,3 +16,12 @@ export const updatePage = (pageId: string, data: any) => axios.patch(`/api/page-
 
 // 获取图片列表
 export const getImageList = () => axios.get('/api/upload/images').then(res => res.data)
+
+// 获取实体列表及表数据
+export const getDataForTables = () => axios.get('/api/data-base/getDataForTables').then(res => res.data)
+
+// 新增实体
+export const addEntity = (data: any) => axios.post('/api/data-base/table', data).then(res => res.data)
+
+// 删除实体
+export const deleteEntity = (tableCode: string) => axios.delete(`/api/data-base/${tableCode}`).then(res => res.data)

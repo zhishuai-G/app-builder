@@ -44,8 +44,9 @@ export default function DataBase() {
   const [showEntityModal, setShowEntityModal] = useState<boolean>(false)
   const [entityCode, setEntityCode] = useState<string>('')
   const [entityName, setEntityName] = useState<string>('')
-  const [columns, setColumns] = useState<any[]>([])
-  const [columnsList, setColumnsList] = useState<any[]>([])
+  const [columns, setColumns] = useState<any[]>([]) // 每个实体所包含的列
+  const [columnsList, setColumnsList] = useState<any[]>([]) // 新增的实体列
+  const [tableData, setTableData] = useState<any[]>([]) // 表格数据
 
   // 公共方法，初始化所有数据
   const initDataSource = async () => {
@@ -100,6 +101,27 @@ export default function DataBase() {
     setColumnsList([])
   }
 
+  const handleOnClick=(item: any)=>{
+    console.log(item.columns);
+    const { data, columns } = item
+    const columnData = columns.map((item: any) => {
+      return {
+        title: item.columnName,
+        dataIndex: item.columnName,
+        key: item.columnName,
+      }
+    })
+    const tableData = data.map((item: any) => {
+      return {
+        ...item,
+        key: item.id
+      }
+    })
+    setTableData(tableData)
+    setColumns(columnData)
+    setEntity(item)
+  }
+
   useEffect(() => {
     initDataSource();
   }, [])
@@ -113,7 +135,7 @@ export default function DataBase() {
           {
             entityDataList?.map((item: any, index: number) => {
               return (
-                <div style={entity?.tableCode === item?.tableCode ? { backgroundColor: '#edeaeb' } : {}} onClick={() => { setEntity(item) }} key={index} className='imageItem'>
+                <div style={entity?.tableCode === item?.tableCode ? { backgroundColor: '#edeaeb' } : {}} onClick={() => { handleOnClick(item) }} key={index} className='imageItem'>
                   {item?.tableName}
                   <Popconfirm
                     title="删除页面"
@@ -134,7 +156,8 @@ export default function DataBase() {
         <Button type='primary' onClick={handleAddEntity} style={{ marginTop: '100px', marginLeft: '25px' }}>新增实体</Button>
         <Table
           style={{ width: 1300, marginTop: '20px', marginLeft: '20px' }}
-        // columns={columns}
+          columns={columns}
+          dataSource={tableData}
         />
       </div>
       <Modal

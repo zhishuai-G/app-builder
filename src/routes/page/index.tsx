@@ -93,6 +93,11 @@ export default function Page() {
     window?.open(`http://127.0.0.1:9090/?pageId=${pageId}`)
   }
 
+  // 跳转到预览页面
+  const toPreviewPage = (pageId: string) => {
+    window?.open(`http://127.0.0.1:9090/render?pageId=${pageId}`)
+  }
+
   // 编辑页面名称的图标的回调
   const handleEditPageName = (pageId: string) => {
     const page = pageList.find(item => item.pageId === pageId)
@@ -186,7 +191,7 @@ export default function Page() {
                     >
                       <div style={{ height: '50px' }}>
                         <Button type='text' onClick={() => { toBuilderPage(item.pageId) }}>编辑页面</Button>
-                        <Button type='text'>预览页面</Button>
+                        <Button type='text' onClick={() => { toPreviewPage(item.pageId) }}>预览页面</Button>
                       </div>
                       <Modal title="编辑页面名称" open={editModalOpenId === item.pageId} onOk={() => { handleEditPageNameOk(item?.pageId) }} onCancel={handleEditPageNameCancel} okText='确认' cancelText='取消'>
                         <Input addonBefore="页面名称" value={editPageName} onChange={updateEditPageName} />

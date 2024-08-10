@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Row, Button, Input, message, Modal, Divider, Select, Form, Popconfirm } from 'antd';
-import { DeleteOutlined, DatabaseOutlined, FormOutlined, InsertRowBelowOutlined, UsergroupDeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { addNewPage, getPageList, deletePage, updatePage } from '../../server'
 import './index.css'
 import { useNavigate } from 'react-router-dom';

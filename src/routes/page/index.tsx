@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Col, Row, Button, Input, message, Modal, Divider, Select, Form, Popconfirm } from 'antd';
+import { Card, Col, Row, Button, Input, message, Modal, Divider, Form, Popconfirm } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { addNewPage, getPageList, deletePage, updatePage } from '../../server'
 import './index.css'
